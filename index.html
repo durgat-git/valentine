@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Will You Be My Valentine?</title>
+
+  <!-- Cute Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ffd6e8, #ffeef5);
+      font-family: 'Pacifico', cursive;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .container {
+      z-index: 2;
+    }
+
+    .heart {
+      color: red;
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      color: red;
+      font-size: 48px;
+    }
+
+    .buttons {
+      margin-top: 30px;
+    }
+
+    button {
+      font-family: 'Pacifico', cursive;
+      font-size: 24px;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+      position: relative;
+    }
+
+    #yes {
+      background: #ff4d6d;
+      color: white;
+      margin-right: 20px;
+    }
+
+    #no {
+      background: #bbb;
+      color: black;
+      position: absolute;
+    }
+
+    /* Floating hearts & flowers */
+    .float {
+      position: absolute;
+      font-size: 24px;
+      animation: float 6s linear infinite;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(100vh);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-10vh);
+        opacity: 0;
+      }
+    }
+
+    .love-message {
+      font-size: 50px;
+      color: #ff2f68;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Music -->
+  <audio autoplay loop>
+    <source src="https://open.spotify.com/track/1XTEmKvJNskIc72sfS4zNA?si=1e87b67504494ff1" type="audio/mpeg">
+  </audio>
+
+  <div class="container">
+    <div class="heart">❤️ ❤️ ❤️</div>
+    <h1>Will you be my Valentine, <span id="name">❤️</span>?</h1>
+
+    <div class="buttons">
+      <button id="yes">Yes 💖</button>
+      <button id="no">No 🙈</button>
+    </div>
+
+    <div class="love-message" id="love">
+      💥💖 I love you thangameeyyyy 💖💥
+    </div>
+  </div>
+
+<script>
+  // Change her name here
+  document.getElementById("name").innerText = "Kamala";
+
+  // Floating hearts & flowers
+  const emojis = ["❤️","🌸","💐","💖","🌹"];
+
+  setInterval(() => {
+    const span = document.createElement("span");
+    span.classList.add("float");
+    span.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+    span.style.left = Math.random() * 100 + "vw";
+    span.style.animationDuration = (3 + Math.random() * 3) + "s";
+    document.body.appendChild(span);
+
+    setTimeout(() => span.remove(), 6000);
+  }, 300);
+
+  // No button teasing
+  const noMessages = [
+    "No you can't 😝",
+    "I'm shy 🙈",
+    "Don't touch 😤",
+    "Try again 😜",
+    "Hehe nope 💕"
+  ];
+
+  const noBtn = document.getElementById("no");
+
+  noBtn.addEventListener("mouseover", () => {
+    noBtn.innerText = noMessages[Math.floor(Math.random() * noMessages.length)];
+    noBtn.style.left = Math.random() * 80 + "vw";
+    noBtn.style.top = Math.random() * 80 + "vh";
+  });
+
+  // Yes button explosion
+  document.getElementById("yes").addEventListener("click", () => {
+    document.querySelector(".buttons").style.display = "none";
+    document.querySelector("h1").style.display = "none";
+    document.getElementById("love").style.display = "block";
+
+    for (let i = 0; i < 50; i++) {
+      const heart = document.createElement("span");
+      heart.innerText = "💖";
+      heart.style.position = "absolute";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.top = Math.random() * 100 + "vh";
+      heart.style.fontSize = "30px";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 2000);
+    }
+  });
+</script>
+
+</body>
+</html>
