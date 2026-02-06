@@ -128,20 +128,31 @@
 
   // No button teasing
   const noMessages = [
-    "No you can't 😝",
-    "I'm shy 🙈",
-    "Don't touch 😤",
-    "Try again 😜",
-    "Hehe nope 💕"
-  ];
+  "No you can't 😝",
+  "I'm shy 🙈",
+  "Don't touch 😤",
+  "Try again 😜",
+  "Hehe nope 💕"
+];
 
-  const noBtn = document.getElementById("no");
+const noBtn = document.getElementById("no");
 
-  noBtn.addEventListener("mouseover", () => {
-    noBtn.innerText = noMessages[Math.floor(Math.random() * noMessages.length)];
-    noBtn.style.left = Math.random() * 80 + "vw";
-    noBtn.style.top = Math.random() * 80 + "vh";
-  });
+// Function to move the button randomly
+function moveNoButton() {
+  noBtn.innerText = noMessages[Math.floor(Math.random() * noMessages.length)];
+  noBtn.style.left = Math.random() * 70 + "vw";
+  noBtn.style.top = Math.random() * 70 + "vh";
+}
+
+// Desktop hover
+noBtn.addEventListener("mouseover", moveNoButton);
+
+// Mobile touch
+noBtn.addEventListener("touchstart", (e) => {
+  e.preventDefault(); // prevent default touch behavior
+  moveNoButton();
+});
+
 
   // Yes button explosion
   document.getElementById("yes").addEventListener("click", () => {
